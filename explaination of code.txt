@@ -1,0 +1,74 @@
+Here is a simple, plain-English breakdown of everything happening in your main.py file, broken down into sections:
+
+1. Imports and Setup (Lines 1-23)
+These lines load all the "tools" the script needs from Python and external libraries.
+
+Lines 1-6: A block comment explaining what the code does.
+Lines 7-8: Tells Python to ignore some annoying warning messages about future changes in libraries.
+Lines 11-16: Imports built-in Python tools: os (for operating system stuff), json (for reading/writing JSON data), shutil (for copying files), time (for pausing the script), and Path (a modern way to handle file paths like C:\folder\file).
+Lines 18-22: Imports the external tools you installed: Google's AI library (google.generativeai), the web framework FastAPI, and dotenv (which reads your .env file).
+
+
+2. Security and AI Configuration (Lines 24-42)
+Line 26: load_dotenv() looks for a file named .env and loads the hidden variables inside it.
+Lines 28-30: Looks for GEMINI_API_KEY. If it can't find it, the program crashes immediately and tells you to add it. This ensures the script doesn't try to run without permission to use the AI.
+Lines 32-33: Tells the Google AI library to use your API key and specifies that we want to use the "gemini-2.5-flash" model.
+Lines 34-42: This is commented-out code (ignored by Python). It looks like older code for using a different AI model (OpenAI/Grok).
+
+
+3. Starting the Web Server (Lines 45-50)
+Lines 46-50: Creates a new FastAPI web application and names it "ABL File Segregator". This is the engine that will listen for web requests.
+
+
+4. Helper Function: Find the Files (Lines 54-59)
+scan_abl_files: You give it a folder name. It checks if the folder exists (crashing with an error if it doesn't). Then, it searches inside that folder and all sub-folders for files ending in .p and returns a list of them.
+
+
+5. Helper Function: Talk to the AI (Lines 62-82)
+build_prompt: This creates the exact message we will send to Gemini. It sets the rules: "You are an expert... read this code... give me exactly a JSON format with a category, summary, keywords, and confidence score." It then attaches the filename and the actual code of the file (cutting it off at 6,000 characters so the AI doesn't get overwhelmed).
+
+
+6. Helper Function: Classifying the File (Lines 85-136)
+classify_file: This does the heavy lifting.
+Line 87: Reads all the text inside a .p file.
+Line 88: Builds the message for Gemini using the function above.
+Lines 90-124: A for loop that tries to get an answer up to 3 times (in case the internet blips or the AI glitches).
+Line 93: Asks Gemini for the answer.
+Lines 96-101: Sometimes Gemini adds markdown formatting (like json ... ). This cleans that up so we just have raw JSON text.
+Line 103: Converts the raw text into a Python dictionary.
+Lines 106-114: Returns a clean package of the results, making sure everything is the right format (e.g., forcing confidence to be a decimal number).
+Lines 116-124: If there's an error (like invalid JSON or a network crash), it waits 2 seconds (time.sleep(2)) and tries again. If it fails 3 times, it gives up.
+_error_result (Lines 127-136): A tiny helper that creates a standard "failed" response if the AI couldn't classify the file, dumping it in an "Unclassified" category.
+
+
+7. Helper Function: Organizing Files (Lines 139-150)
+copy_file_to_category: Once we know a file's category (like "Billing"), this function:
+Lines 142-143: Cleans up the category name so it's safe to use as a Windows folder name (removes weird characters, turns spaces into underscores).
+Lines 145-146: Creates that folder inside the output directory.
+Lines 148-149: Copies the .p file from its original spot into this new category folder.
+
+
+8. Helper Function: Making the Report (Lines 153-162)
+save_report: Takes all the answers the AI gave us for every file, organizes them, and saves them into a file called classification_report.json in your output folder.
+
+
+9. The API Routes (How you trigger the code)
+The Health Check (Lines 167-169)
+
+@app.get("/"): If you just visit the root URL of the app, it replies {"status": "ok"} to let you know the server is awake and ready.
+The Main Segregation Process (Lines 172-237)
+
+@app.post("/segregate"): This is the big red button. When you hit this URL, you give it the source_folder.
+Lines 193-195: If you didn't give it an output folder, it makes one called segregated_output next to your source files.
+Lines 198-207: Uses the scanner function to find the .p files. If it finds none, it returns a 404 Not Found error.
+Lines 210-221 (The Big Loop): For every single file it found:
+Prints a message to the console saying "Classifying: filename.p..."
+Asks the AI what the file is (classify_file).
+Copies the file to its new home (copy_file_to_category).
+Records the result.
+Waits a few seconds (delay_seconds) before doing the next file so Google doesn't ban us for spamming the API.
+Lines 224-225: Saves the giant JSON report.
+Lines 227-237: Returns a summary message back to you saying "Success!" with some stats.
+Reading the Report (Lines 240-252)
+
+@app.get("/report"): A quick way to ask the server "Hey, give me the contents of the classification_report.json file" without you having to open it yourself. If the file doesn't exist yet, it throws an error telling you to run /segregate first.

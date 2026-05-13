@@ -1,0 +1,407 @@
+{
+  "total_files": 26,
+  "categories_found": [
+    "API Integration",
+    "Authentication",
+    "Batch Processing",
+    "Billing",
+    "Database Utilities",
+    "Inventory",
+    "Inventory Management",
+    "Order Processing",
+    "Reporting",
+    "Sales Reporting",
+    "Unclassified",
+    "Utility"
+  ],
+  "files": [
+    {
+      "filename": "api_export_orders.p",
+      "filepath": "sample_abl_files\\api_export_orders.p",
+      "category": "API Integration",
+      "summary": "This program iterates through all order records in the database, exports them as individual lines to a file named `orders_export.json`, and then displays a success message.",
+      "keywords": [
+        "Orders",
+        "Data Export",
+        "JSON",
+        "API",
+        "Database",
+        "Integration"
+      ],
+      "confidence": 0.95,
+      "error": null,
+      "copied_to": "segregated_output\\API_Integration\\api_export_orders.p"
+    },
+    {
+      "filename": "authentication_check.p",
+      "filepath": "sample_abl_files\\authentication_check.p",
+      "category": "Authentication",
+      "summary": "This program performs a basic user authentication check by validating a provided username and password against records in a 'users' database table. It reports whether the login attempt was successful or if the credentials were invalid.",
+      "keywords": [
+        "Authentication",
+        "Login",
+        "User",
+        "Password",
+        "Credentials",
+        "Security"
+      ],
+      "confidence": 1.0,
+      "error": null,
+      "copied_to": "segregated_output\\Authentication\\authentication_check.p"
+    },
+    {
+      "filename": "batch_order_process.p",
+      "filepath": "sample_abl_files\\batch_order_process.p",
+      "category": "Order Processing",
+      "summary": "This file processes pending orders by iterating through them, verifying the existence of the associated customer, and then updating the order's status to 'Processed' if the customer is found.",
+      "keywords": [
+        "Order",
+        "Batch Processing",
+        "Status Update",
+        "Pending Orders",
+        "Customer Verification",
+        "ABL"
+      ],
+      "confidence": 1.0,
+      "error": null,
+      "copied_to": "segregated_output\\Order_Processing\\batch_order_process.p"
+    },
+    {
+      "filename": "billing_invoice.p",
+      "filepath": "sample_abl_files\\billing_invoice.p",
+      "category": "Billing",
+      "summary": "This program module is responsible for generating new customer invoices, including calculating line item totals, applying taxes, and persisting the invoice and its line details to the database. It also provides functionality to calculate and apply late fees to overdue invoices.",
+      "keywords": [
+        "Invoice Generation",
+        "Billing",
+        "Customer Invoices",
+        "Late Fees",
+        "Invoice Calculation",
+        "Accounts Receivable"
+      ],
+      "confidence": 1.0,
+      "error": null,
+      "copied_to": "segregated_output\\Billing\\billing_invoice.p"
+    },
+    {
+      "filename": "config_loader.p",
+      "filepath": "sample_abl_files\\config_loader.p",
+      "category": "Utility",
+      "summary": "This ABL procedure is designed to load application configuration settings from a specified INI file (`config/settings.ini`) by opening it for input and attempting to read its content.",
+      "keywords": [
+        "Configuration",
+        "Settings",
+        "INI",
+        "File I/O",
+        "Application Utility",
+        "Data Loading"
+      ],
+      "confidence": 0.9,
+      "error": null,
+      "copied_to": "segregated_output\\Utility\\config_loader.p"
+    },
+    {
+      "filename": "core_batch_77.p",
+      "filepath": "sample_abl_files\\core_batch_77.p",
+      "category": "Batch Processing",
+      "summary": "This file iterates through pending requests in a queue, retrieves associated customer information, logs the processing event, and updates the request's status to completed.",
+      "keywords": [
+        "Batch processing",
+        "Queue management",
+        "Customer data",
+        "Logging",
+        "req_queue",
+        "process_log"
+      ],
+      "confidence": 1.0,
+      "error": null,
+      "copied_to": "segregated_output\\Batch_Processing\\core_batch_77.p"
+    },
+    {
+      "filename": "customer_lookup.p",
+      "filepath": "sample_abl_files\\customer_lookup.p",
+      "category": "Unclassified",
+      "summary": "",
+      "keywords": [],
+      "confidence": 0.0,
+      "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-2.5-flash\nPlease retry in 51.206396361s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.5-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 5\n}\n, retry_delay {\n  seconds: 51\n}\n]",
+      "copied_to": "segregated_output\\Unclassified\\customer_lookup.p"
+    },
+    {
+      "filename": "customer_mgmt.p",
+      "filepath": "sample_abl_files\\customer_mgmt.p",
+      "category": "Unclassified",
+      "summary": "",
+      "keywords": [],
+      "confidence": 0.0,
+      "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-2.5-flash\nPlease retry in 44.349352132s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.5-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 5\n}\n, retry_delay {\n  seconds: 44\n}\n]",
+      "copied_to": "segregated_output\\Unclassified\\customer_mgmt.p"
+    },
+    {
+      "filename": "database_cleanup.p",
+      "filepath": "sample_abl_files\\database_cleanup.p",
+      "category": "Database Utilities",
+      "summary": "This program iterates through all records in the `temp_records` table, deleting them one by one. It serves as a utility to clean up temporary data within the database.",
+      "keywords": [
+        "database",
+        "cleanup",
+        "utility",
+        "delete",
+        "temporary records",
+        "ABL"
+      ],
+      "confidence": 1.0,
+      "error": null,
+      "copied_to": "segregated_output\\Database_Utilities\\database_cleanup.p"
+    },
+    {
+      "filename": "db_utils.p",
+      "filepath": "sample_abl_files\\db_utils.p",
+      "category": "Database Utilities",
+      "summary": "This ABL file provides a set of utility procedures for managing a Progress OpenEdge database. It includes functions for connecting to and disconnecting from a database, performing maintenance tasks like cleaning up old sessions and audit logs, updating table statistics, and executing online database backups.",
+      "keywords": [
+        "Database",
+        "Connection",
+        "Maintenance",
+        "Backup",
+        "OpenEdge",
+        "Utilities"
+      ],
+      "confidence": 1.0,
+      "error": null,
+      "copied_to": "segregated_output\\Database_Utilities\\db_utils.p"
+    },
+    {
+      "filename": "dyn_loadx.p",
+      "filepath": "sample_abl_files\\dyn_loadx.p",
+      "category": "Utility",
+      "summary": "This program reads the specified configuration file, \"env/settings.cfg\", line by line and displays each line's content to the console.",
+      "keywords": [
+        "File I/O",
+        "Configuration",
+        "Read file",
+        "Display output",
+        "Settings file",
+        "ABL"
+      ],
+      "confidence": 1.0,
+      "error": null,
+      "copied_to": "segregated_output\\Utility\\dyn_loadx.p"
+    },
+    {
+      "filename": "inventory_check.p",
+      "filepath": "sample_abl_files\\inventory_check.p",
+      "category": "Inventory Management",
+      "summary": "This program provides core inventory management functionalities including checking stock levels against reorder points, updating stock upon receipt of goods, and facilitating transfers of items between different warehouses. It also includes logic to generate purchase orders when items fall below their reorder level.",
+      "keywords": [
+        "Inventory",
+        "Stock Control",
+        "Warehouse Management",
+        "Reorder Level",
+        "Stock Transfer",
+        "Purchase Orders"
+      ],
+      "confidence": 1.0,
+      "error": null,
+      "copied_to": "segregated_output\\Inventory_Management\\inventory_check.p"
+    },
+    {
+      "filename": "inventory_update.p",
+      "filepath": "sample_abl_files\\inventory_update.p",
+      "category": "Inventory",
+      "summary": "This program updates the stock quantity for a specified inventory item. It takes an item ID and a quantity as input, decrements the existing stock level for that item, and then displays the new stock quantity.",
+      "keywords": [
+        "inventory",
+        "stock management",
+        "quantity update",
+        "item",
+        "database",
+        "ABL"
+      ],
+      "confidence": 0.98,
+      "error": null,
+      "copied_to": "segregated_output\\Inventory\\inventory_update.p"
+    },
+    {
+      "filename": "invoice_generator.p",
+      "filepath": "sample_abl_files\\invoice_generator.p",
+      "category": "Billing",
+      "summary": "This program iterates through all order lines to calculate a total amount, then creates a new invoice record, assigning the current date and the calculated total to it.",
+      "keywords": [
+        "invoice",
+        "billing",
+        "order line",
+        "total calculation",
+        "record creation",
+        "OpenEdge"
+      ],
+      "confidence": 1.0,
+      "error": null,
+      "copied_to": "segregated_output\\Billing\\invoice_generator.p"
+    },
+    {
+      "filename": "monthly_report.p",
+      "filepath": "sample_abl_files\\monthly_report.p",
+      "category": "Unclassified",
+      "summary": "",
+      "keywords": [],
+      "confidence": 0.0,
+      "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-2.5-flash\nPlease retry in 55.519928774s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.5-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 5\n}\n, retry_delay {\n  seconds: 55\n}\n]",
+      "copied_to": "segregated_output\\Unclassified\\monthly_report.p"
+    },
+    {
+      "filename": "mstr_calculate.p",
+      "filepath": "sample_abl_files\\mstr_calculate.p",
+      "category": "Unclassified",
+      "summary": "",
+      "keywords": [],
+      "confidence": 0.0,
+      "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-2.5-flash\nPlease retry in 48.537069124s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.5-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 5\n}\n, retry_delay {\n  seconds: 48\n}\n]",
+      "copied_to": "segregated_output\\Unclassified\\mstr_calculate.p"
+    },
+    {
+      "filename": "proc_a102.p",
+      "filepath": "sample_abl_files\\proc_a102.p",
+      "category": "Unclassified",
+      "summary": "",
+      "keywords": [],
+      "confidence": 0.0,
+      "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-2.5-flash\nPlease retry in 41.474673937s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.5-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 5\n}\n, retry_delay {\n  seconds: 41\n}\n]",
+      "copied_to": "segregated_output\\Unclassified\\proc_a102.p"
+    },
+    {
+      "filename": "proc_usercheck.p",
+      "filepath": "sample_abl_files\\proc_usercheck.p",
+      "category": "Authentication",
+      "summary": "This procedure authenticates a user by checking a provided username and password against records in the app_users table. If successful, it logs the login event in the login_history table; otherwise, it displays an \"Access denied\" message.",
+      "keywords": [
+        "authentication",
+        "login",
+        "user management",
+        "security",
+        "login history",
+        "access control"
+      ],
+      "confidence": 1.0,
+      "error": null,
+      "copied_to": "segregated_output\\Authentication\\proc_usercheck.p"
+    },
+    {
+      "filename": "rpt_final.p",
+      "filepath": "sample_abl_files\\rpt_final.p",
+      "category": "Reporting",
+      "summary": "This program processes sales data, calculates a grand total of sales amounts, and outputs both detailed sales records (region and amount) and the final total into a text file named 'final_output.txt'.",
+      "keywords": [
+        "Sales",
+        "Reporting",
+        "Data Export",
+        "Total Calculation",
+        "Text File Output",
+        "Data Aggregation"
+      ],
+      "confidence": 0.99,
+      "error": null,
+      "copied_to": "segregated_output\\Reporting\\rpt_final.p"
+    },
+    {
+      "filename": "sales_order.p",
+      "filepath": "sample_abl_files\\sales_order.p",
+      "category": "Order Processing",
+      "summary": "This program manages the lifecycle of sales orders. It provides functionality to create new sales orders with line items, perform stock availability checks, and subsequently confirm and ship orders, updating their status, reserving inventory, and triggering invoice creation.",
+      "keywords": [
+        "Sales Order",
+        "Order Processing",
+        "Order Fulfillment",
+        "Shipping",
+        "Inventory",
+        "Invoicing"
+      ],
+      "confidence": 1.0,
+      "error": null,
+      "copied_to": "segregated_output\\Order_Processing\\sales_order.p"
+    },
+    {
+      "filename": "sales_report.p",
+      "filepath": "sample_abl_files\\sales_report.p",
+      "category": "Sales Reporting",
+      "summary": "This program calculates the total sales amount by aggregating values from the 'sales' table, then displays this total on the console and writes it to a text file named sales_report.txt.",
+      "keywords": [
+        "sales",
+        "reporting",
+        "data aggregation",
+        "total sales",
+        "ABL",
+        "OpenEdge"
+      ],
+      "confidence": 1.0,
+      "error": null,
+      "copied_to": "segregated_output\\Sales_Reporting\\sales_report.p"
+    },
+    {
+      "filename": "string_utils.p",
+      "filepath": "sample_abl_files\\string_utils.p",
+      "category": "Utility",
+      "summary": "This file provides a collection of general-purpose ABL procedures for common string and date/time operations. It includes functions for trimming, padding, formatting, splitting strings, validating emails, getting current timestamps, and generating pseudo-UUIDs.",
+      "keywords": [
+        "String Manipulation",
+        "Utility Procedures",
+        "Date Formatting",
+        "Data Validation",
+        "ABL",
+        "UUID Generation"
+      ],
+      "confidence": 1.0,
+      "error": null,
+      "copied_to": "segregated_output\\Utility\\string_utils.p"
+    },
+    {
+      "filename": "user_auth.p",
+      "filepath": "sample_abl_files\\user_auth.p",
+      "category": "Authentication",
+      "summary": "This ABL program handles user authentication by validating usernames and hashed passwords, managing failed login attempts and account locking, and creating, validating, and terminating user sessions.",
+      "keywords": [
+        "Authentication",
+        "Session Management",
+        "Login",
+        "User Account",
+        "Password Hash",
+        "Session Token",
+        "Account Lockout",
+        "Logout"
+      ],
+      "confidence": 1.0,
+      "error": null,
+      "copied_to": "segregated_output\\Authentication\\user_auth.p"
+    },
+    {
+      "filename": "utility_date_formatter.p",
+      "filepath": "sample_abl_files\\utility_date_formatter.p",
+      "category": "Unclassified",
+      "summary": "",
+      "keywords": [],
+      "confidence": 0.0,
+      "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-2.5-flash\nPlease retry in 56.935798569s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.5-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 5\n}\n, retry_delay {\n  seconds: 56\n}\n]",
+      "copied_to": "segregated_output\\Unclassified\\utility_date_formatter.p"
+    },
+    {
+      "filename": "worker_sync.p",
+      "filepath": "sample_abl_files\\worker_sync.p",
+      "category": "Unclassified",
+      "summary": "",
+      "keywords": [],
+      "confidence": 0.0,
+      "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-2.5-flash\nPlease retry in 50.092461825s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.5-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 5\n}\n, retry_delay {\n  seconds: 50\n}\n]",
+      "copied_to": "segregated_output\\Unclassified\\worker_sync.p"
+    },
+    {
+      "filename": "xrun_temp01.p",
+      "filepath": "sample_abl_files\\xrun_temp01.p",
+      "category": "Unclassified",
+      "summary": "",
+      "keywords": [],
+      "confidence": 0.0,
+      "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-2.5-flash\nPlease retry in 42.624920017s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.5-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n  quota_value: 5\n}\n, retry_delay {\n  seconds: 42\n}\n]",
+      "copied_to": "segregated_output\\Unclassified\\xrun_temp01.p"
+    }
+  ]
+}

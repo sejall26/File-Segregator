@@ -1,0 +1,65 @@
+ABL File Segregator - Pipeline Architecture
+
+### High-Level Overview
+The application is a FastAPI-based REST web service that acts as an orchestration layer. Its primary function is to process legacy Progress OpenEdge ABL (.p) files, use an LLM (Google's Gemini 2.5 Flash) to understand what each file does, and physically organize them into a structured directory hierarchy based on the AI's classification.
+
+### Architecture Diagram
+
+
+    User([User / Client]) -->|POST /segregate| API[FastAPI Application]
+    
+    subgraph Pipeline Execution
+        API --> Scan[1. Scan Directory]
+        Scan -->|List of .p files| Loop[2. Iteration Loop]
+        
+        Loop --> Read[Read File Content]
+        Read --> Prompt[Build Prompt]
+        Prompt -->|Prompt text| LLM((Gemini 2.5 Flash AI))
+        LLM -.->|JSON Classification| Parse[Parse & Validate JSON]
+        
+        Parse --> Copy[3. Segregate/Copy File]
+        Copy -->|Category Folder| OutputFS[(Output File System)]
+        
+        Parse --> RateLimit[Rate Limit Delay]
+        RateLimit --> Loop
+    end
+    
+    Loop -->|Gathered Results| Report[4. Generate JSON Report]
+    Report --> OutputFS
+    Report -->|Response| User
+```
+
+### Core Components & Pipeline Flow
+
+The core architecture follows a synchronous, linear pipeline executed when the `/segregate` endpoint is called. 
+
+#### 1. Input & Scanning (`scan_abl_files`)
+* Process: The pipeline accepts a `source_folder` and recursively searches for all files with a `.p` extension using `pathlib.Path.rglob`.
+* Error Handling: If the directory doesn't exist or is empty, it short-circuits and returns a 404 HTTP error.
+
+#### 2. AI Classification (`classify_file` & `build_prompt`)
+This is the "brain" of the pipeline, executed in a loop for every file found:
+* Prompt Engineering: It reads the raw ABL code (truncating it to the first 6,000 characters to fit context limits efficiently) and injects it into a strict prompt. The prompt instructs the AI to act as an ABL expert and mandates a raw JSON response containing four specific fields: `category`, `summary`, `keywords`, and `confidence`.
+* LLM Integration: It uses `google.generativeai` with the `gemini-2.5-flash` model to generate the classification.
+* Resilience & Retry Logic: AI responses can be flaky or contain accidental Markdown fences. The architecture handles this by:
+  1. Stripping unwanted markdown.
+  2. Attempting to parse the JSON.
+  3. Automatically retrying up to 3 times if there is a `JSONDecodeError` or network exception, with a 2-second backoff between attempts.
+  4. Falling back to an "Unclassified" category if all 3 attempts fail.
+
+#### 3. Physical Segregation (`copy_file_to_category`)
+* Process: Once a file is classified, the pipeline sanitizes the AI-provided `category` string (removing special characters and replacing spaces with underscores) to ensure it's a valid folder name.
+* Execution: It creates the category directory (if it doesn't already exist) inside the `output_folder` and copies the original `.p` file into this new location using `shutil.copy2` (which preserves file metadata).
+
+#### 4. Rate Limiting (`time.sleep`)
+* Process: To prevent exhausting Gemini API quotas or hitting rate limits (HTTP 429), the architecture introduces an artificial delay (`delay_seconds`, default 5s) between each file's processing iteration.
+
+#### 5. Reporting (`save_report`)
+* Process: As files are processed, the classification metadata (filename, original path, new path, category, summary, confidence, errors) is aggregated in memory.
+* Execution: Once the loop finishes, this data is dumped into a `classification_report.json` file in the root of the output directory, providing an audit trail of the entire run.
+
+### API Endpoints
+The pipeline exposes its functionality via three REST endpoints:
+1. `GET /`: A simple health check to verify the service is running.
+2. `POST /segregate`: The main trigger that runs the pipeline described above. It accepts parameters for source/output directories and the rate-limit delay.
+3. `GET /report`: A utility endpoint to fetch the contents of the last generated `classification_report.json` without needing to access the filesystem directly.
